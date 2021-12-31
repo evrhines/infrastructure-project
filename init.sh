@@ -9,7 +9,24 @@ install_terraform() {
         apt-get update && apt-get install terraform
 }
 
+install_kubectl() {
+	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+	install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+	kubectl version --client
+}
+
 TERRAFORM_ON_PATH=$(which terraform)
 if [ ! -n "$TERRAFORM_ON_PATH" ]; then
 	install_terraform
 fi
+
+KUBECTL_ON_PATH=$(which kubectl)
+if [ ! -n "$KUBECTL_ON_PATH" ]; then
+	install_kubectl
+fi
+
+# kops create cluster --name=evrhiness-project.k8s.local --state=s3://kops-state  \
+# 	--dns-zone=evrhiness-project.k8s.local --target=terraform --out=./kops/ \
+# 	--zones=us-west-2a,us-west-2b,us-west-2c --cloud=aws --node-count 3 \
+# 	--master-zones us-west-2a,us-west-2b,us-west-2c --topology private \
+# 	--networking calico

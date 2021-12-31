@@ -1,4 +1,4 @@
 variable "env" {
-    description = "The deployment environment"
-    default = "dev"
+  description = "The deployment environment"
+  default     = "dev"
 }

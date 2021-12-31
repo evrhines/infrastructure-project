@@ -1,0 +1,5 @@
+.aws
+.venv**
+.git
+**.tfstate
+**.terraform**

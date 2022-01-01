@@ -1,5 +1,5 @@
-CHANGED_FILES=$(cat "$HOME"/files_added.json "$HOME"/files_modified.json "$HOME"/files_renamed.json  | jq '.[]' | xargs)
-DELETED_FILES=$(cat "$HOME"/files_deleted.json | jq '.[]' | xargs)
+CHANGED_FILES=$(cat "$HOME"/files_added.json "$HOME"/files_modified.json "$HOME"/files_renamed.json  | jq '.[]' | grep terragrunt.hcl | grep -v ".terragrunt-cache" | grep -v "infra/terragrunt.hcl" | xargs)
+DELETED_FILES=$(cat "$HOME"/files_deleted.json | jq '.[]' | grep terragrunt.hcl | grep -v ".terragrunt-cache" | grep -v "infra/terragrunt.hcl" | xargs)
 
 for CHANGED in "$CHANGED_FILES"; do
     echo "$CHANGED"

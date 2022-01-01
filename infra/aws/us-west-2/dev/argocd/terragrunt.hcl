@@ -17,7 +17,7 @@ locals {
 }
 
 terraform {
-  source = "../../../../../modules/eks"
+  source = "../../../../../modules/helm"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -30,18 +30,19 @@ include "root" {
   path = find_in_parent_folders()
 }
 
-dependency "network" {
-  config_path = "../network"
+dependency "eks" {
+  config_path = "../eks"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
 # We don't need to override any of the common parameters for this environment, so we don't specify any inputs.
 # ---------------------------------------------------------------------------------------------------------------------
 inputs = {
-  eks_version          = "1.21"
-  eks_name             = "${local.account_vars.locals.account_name}-${local.region_vars.locals.region}-${local.environment_vars.locals.env}-eks"
-  vpc_id               = dependency.network.outputs.vpc_id
-  subnets              = dependency.network.outputs.private_subnets
-  worker_instance_type = "m5.large"
-  num_workers          = 3
+  name             = "argocd"
+  repository               = "https://charts.bitnami.com/bitnami"
+  chart              = "argo-cd"
+  chart_version          = "2.2.1"
+  k8s_cluster_name = dependency.eks.outputs.cluster_name
+  k8s_host = dependency.eks.outputs.host
+  k8s_cluster_ca_cert = dependency.eks.outputs.cluster_ca_cert
 }

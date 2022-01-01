@@ -13,7 +13,7 @@ variable "chart" {
   default     = "dev"
 }
 
-variable "version" {
+variable "chart_version" {
   description = "The helm chart version"
   default     = "dev"
 }
@@ -23,14 +23,8 @@ variable "k8s_host" {
   default     = "dev"
 }
 
-variable "k8s_client_cert" {
-  description = "The client certificate to authenticate with the API server"
-  default     = "dev"
-}
-
-variable "k8s_client_key" {
-  description = "The client key to authenticate with the API server"
-  default     = "dev"
+variable "k8s_cluster_name" {
+  description = "The name of the EKS cluster to connect to"
 }
 
 variable "k8s_cluster_ca_cert" {

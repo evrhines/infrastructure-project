@@ -15,6 +15,13 @@ install_kubectl() {
 	kubectl version --client
 }
 
+install_terragrunt() {
+	curl -LO https://github.com/gruntwork-io/terragrunt/releases/download/v0.35.16/terragrunt_linux_amd64
+	TF_PATH=$(which terraform)
+	chmod 0755 terragrunt_linux_amd64
+	mv terragrunt_linux_amd64 ${TF_PATH%\/*}/terragrunt
+}
+
 TERRAFORM_ON_PATH=$(which terraform)
 if [ ! -n "$TERRAFORM_ON_PATH" ]; then
 	install_terraform
@@ -25,6 +32,10 @@ if [ ! -n "$KUBECTL_ON_PATH" ]; then
 	install_kubectl
 fi
 
+TERRAGRUNT_ON_PATH=$(which terragrunt)
+if [ ! -n "$TERRAGRUNT_ON_PATH" ]; then
+	install_terragrunt
+fi
 # kops create cluster --name=evrhiness-project.k8s.local --state=s3://kops-state  \
 # 	--dns-zone=evrhiness-project.k8s.local --target=terraform --out=./kops/ \
 # 	--zones=us-west-2a,us-west-2b,us-west-2c --cloud=aws --node-count 3 \

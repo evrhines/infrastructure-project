@@ -6,10 +6,11 @@ jobs:
     env:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      SHA1: ${{ github.event.pull_request.base.sha }}
+      SHA2: ${{ github.sha }}
     steps:
       - name: Pull down code base
         uses: actions/checkout@v2
       - run: sudo bash ${{ github.workspace }}/init.sh
-      - run: terraform -chdir=${{ github.workspace }}/kops init
-      - run: terraform -chdir=${{ github.workspace }}/kops apply -input=false -auto-approve
+      - run: bash ${{ github.workspace }}/build/build.sh
       - run: echo "Job Status - ${{ job.status }}."

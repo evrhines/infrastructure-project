@@ -17,7 +17,7 @@ locals {
   # Extract the variables we need for easy access
   account_name = local.account_vars.locals.account_name
   account_id   = local.account_vars.locals.account_id
-  region   = local.region_vars.locals.region
+  region       = local.region_vars.locals.region
 }
 
 # Generate an AWS provider block

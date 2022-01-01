@@ -1,6 +1,6 @@
 provider "helm" {
   kubernetes {
-    host     = var.k8s_host
+    host = var.k8s_host
 
     client_certificate     = var.k8s_client_cert
     client_key             = var.k8s_client_key

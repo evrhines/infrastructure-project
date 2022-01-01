@@ -1,5 +1,5 @@
 module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
+  source = "terraform-aws-modules/eks/aws"
 
   cluster_version = var.eks_version
   cluster_name    = var.eks_name
@@ -14,9 +14,9 @@ module "eks" {
   ]
 
   tags = {
-    terraform = "true"
-    owner = "SRE"
-    contact = "evrhiness@gmail.com"
+    terraform   = "true"
+    owner       = "SRE"
+    contact     = "evrhiness@gmail.com"
     environment = var.env
   }
 }

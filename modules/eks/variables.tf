@@ -1,27 +1,27 @@
 variable "eks_version" {
-    type = string
+  type = string
 }
 
 variable "eks_name" {
-    type = string
+  type = string
 }
 
 variable "vpc_id" {
-    type = string
+  type = string
 }
 
 variable "subnets" {
-    type = list(string)
+  type = list(string)
 }
 
 variable "worker_instance_type" {
-    type = string
+  type = string
 }
 
 variable "asg_max_size" {
-    type = number
+  type = number
 }
 
 variable "env" {
-    type = string
+  type = string
 }

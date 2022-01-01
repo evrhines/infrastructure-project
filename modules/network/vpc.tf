@@ -12,9 +12,9 @@ module "vpc" {
   enable_vpn_gateway = var.enable_vpn_gw
 
   tags = {
-    terraform = "true"
-    owner = "SRE"
-    contact = "evrhiness@gmail.com"
+    terraform   = "true"
+    owner       = "SRE"
+    contact     = "evrhiness@gmail.com"
     environment = var.env
   }
 }

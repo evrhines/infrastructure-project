@@ -43,5 +43,5 @@ inputs = {
   vpc_id               = dependency.network.outputs.vpc_id
   subnets              = dependency.network.outputs.subnets
   worker_instance_type = "m5.small"
-  asg_max_size         = 3
+  num_workers         = 3
 }

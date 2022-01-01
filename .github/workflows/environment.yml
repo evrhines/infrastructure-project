@@ -9,11 +9,14 @@ jobs:
     env:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      SHA1: ${{ github.event.pull_request.base.sha }}
-      SHA2: ${{ github.sha }}
     steps:
       - name: Pull down code base
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: sudo bash ${{ github.workspace }}/init.sh
       - run: bash ${{ github.workspace }}/build/build.sh
+        env:
+          SHA1: ${{ github.event.pull_request.base.sha }}
+          SHA2: ${{ github.sha }}
       - run: echo "Job Status - ${{ job.status }}."

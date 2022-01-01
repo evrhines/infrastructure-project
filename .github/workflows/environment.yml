@@ -1,5 +1,8 @@
 name: Generate infrastructure for the environment
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   Build-Kubernetes-Environment:
     runs-on: ubuntu-latest

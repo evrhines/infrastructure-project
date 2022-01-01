@@ -41,7 +41,7 @@ inputs = {
   eks_version          = "1.21"
   eks_name             = "${local.account_vars.locals.account_name}-${local.region_vars.locals.region}-${local.environment_vars.locals.env}-eks"
   vpc_id               = dependency.network.outputs.vpc_id
-  subnets              = dependency.network.outputs.subnets
+  subnets              = dependency.network.outputs.private_subnets
   worker_instance_type = "m5.small"
   num_workers          = 3
 }

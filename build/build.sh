@@ -1,14 +1,8 @@
-
-for CHANGED in "$CHANGED_FILES"; do
-    echo "$CHANGED"
-    if [ $(echo "$CHANGED" | grep 'terragrunt.hcl' | grep -v 'infra/terragrunt.hcl') ]; then
-        terragrunt apply --terragrunt-working-dir "${CHANGED%\/*}" --terragrunt-non-interactive -auto-approve
-    fi
-done
+terragrunt run-all apply --terragrunt-working-dir infra/aws/ --terragrunt-non-interactive
 
 for DELETED in "$DELETED_FILES"; do
     echo "$DELETED"
     if [ $(echo "$DELETED" | grep 'terragrunt.hcl' | grep -v 'infra/terragrunt.hcl') ]; then
-        terragrunt apply --terragrunt-working-dir "${DELETED%\/*}" --terragrunt-non-interactive -auto-approve
+        terragrunt delete --terragrunt-working-dir "${DELETED%\/*}" --terragrunt-non-interactive -auto-approve
     fi
 done

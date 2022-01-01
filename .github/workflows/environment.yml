@@ -20,6 +20,5 @@ jobs:
         uses: tj-actions/changed-files@v12.2
       - run: bash ${{ github.workspace }}/build/build.sh
         env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
           DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
       - run: echo "Job Status - ${{ job.status }}."

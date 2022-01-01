@@ -18,7 +18,7 @@ variable "worker_instance_type" {
   type = string
 }
 
-variable "asg_max_size" {
+variable "num_workers" {
   type = number
 }
 

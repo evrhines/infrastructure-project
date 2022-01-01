@@ -15,8 +15,9 @@ jobs:
         with:
           fetch-depth: 0
       - run: sudo bash ${{ github.workspace }}/init.sh
+      - name: Get Changed Files
+        uses: lots0logs/gh-action-get-changed-files@2.1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - run: bash ${{ github.workspace }}/build/build.sh
-        env:
-          SHA1: ${{ github.event.pull_request.base.sha }}
-          SHA2: ${{ github.sha }}
       - run: echo "Job Status - ${{ job.status }}."

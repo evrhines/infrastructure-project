@@ -22,6 +22,10 @@ install_terragrunt() {
 	mv terragrunt_linux_amd64 ${TF_PATH%\/*}/terragrunt
 }
 
+install_jq() {
+	apt-get update && apt-get install -y jq
+}
+
 TERRAFORM_ON_PATH=$(which terraform)
 if [ ! -n "$TERRAFORM_ON_PATH" ]; then
 	install_terraform
@@ -35,6 +39,11 @@ fi
 TERRAGRUNT_ON_PATH=$(which terragrunt)
 if [ ! -n "$TERRAGRUNT_ON_PATH" ]; then
 	install_terragrunt
+fi
+
+JQ_ON_PATH=$(which jq)
+if [ ! -n "$JQ_ON_PATH" ]; then
+	install_jq
 fi
 # kops create cluster --name=evrhiness-project.k8s.local --state=s3://kops-state  \
 # 	--dns-zone=evrhiness-project.k8s.local --target=terraform --out=./kops/ \

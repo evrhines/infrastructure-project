@@ -10,3 +10,8 @@ output "token" {
   value     = data.aws_eks_cluster_auth.eks.token
   sensitive = true
 }
+
+// Reexport the name for downstream dependencies.
+output "cluster_name" {
+  value = var.eks_name
+}
